@@ -28,9 +28,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Print what we want to install
-      - run: |
-        echo INSTALLING CONDA ENV
-        cat bdl_2022f_env.yml
+      - name: print_goal
+          - run:|
+              cat bdl_2022f_env.yml
       # Create the env via conda
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -41,7 +41,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           channels: pytorch
       # Verify the install by printing out the packages  
-      - run: |
+      - run:|
           conda info
           conda list
           conda config --show-sources
