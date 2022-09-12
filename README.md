@@ -17,14 +17,14 @@ Then run that script (`bash Miniconda2-latest-Linux-x86_64.sh`).
 2) Clone this repo
 
 ```
-$ git clone https://github.com/tufts-ml/comp150-bdl-19f-assignments.git
+$ git clone https://github.com/tufts-ml/cs152BDL-22f-assignments.git
 ```
 
 3) Create the conda environment
 
 ```
-cd path/to/comp150/comp150-bdl-19f-assignments/conda_envs/
+cd path/to/cs152BDL-22f-assignments/
 
-conda env create -f bdl_2019f_env.yml
+conda env create -f bdl_2022f_env.yml
 ```
 
