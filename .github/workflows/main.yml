@@ -21,12 +21,15 @@ jobs:
         # "macos-latest", "windows-latest"
         os: ["ubuntu-latest"]
         python-version: ["3.8"]
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Print what we want to install
       - run: |
-        echo "INSTALLING CONDA ENV"
+        echo INSTALLING CONDA ENV
         cat bdl_2022f_env.yml
       # Create the env via conda
       - uses: conda-incubator/setup-miniconda@v2
