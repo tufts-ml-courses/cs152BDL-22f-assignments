@@ -1,4 +1,4 @@
-name: verify-conda-env-installs-and-runs
+name: env-runs-on-linux
 
 # Controls when the workflow will run
 on:
@@ -12,13 +12,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  verify-conda-unix:
+  verify-conda-macos:
     name: verify-${{ matrix.os }}-Py${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "macos-latest"]
+        os: ["ubuntu-latest"]
         python-version: ["3.8"]
     defaults:
       run:
@@ -45,38 +45,4 @@ jobs:
           conda config --show-sources
           conda config --show
           python3 -c "import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))"
-          python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item()))"
-
-  verify-conda-windows:
-    name: verify-${{ matrix.os }}-Py${{ matrix.python-version }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ["windows-latest"]
-        python-version: ["3.8"]
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      # Print what we want to install
-      - run: |
-          cat bdl_2022f_windows.yml
-      # Create the env via conda
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: bdl_2022f_env
-          environment-file: bdl_2022f_windows.yml
-          auto-update-conda: true
-          auto-activate-base: false
-          python-version: ${{ matrix.python-version }}
-          channels: pytorch
-      # Verify the install by printing out the packages  
-      - run: |
-          conda info
-          conda list
-          conda config --show-sources
-          conda config --show
           python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item()))"
