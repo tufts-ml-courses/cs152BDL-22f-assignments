@@ -1,0 +1,47 @@
+name: verify-conda-env-installs-and-runs
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  verify-conda-env:
+    name: verify conda env (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest", "macos-latest", "windows-latest"]
+        python-version: ["3.8"]
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Print what we want to install
+      - run: |
+          cat bdl_2022f_env.yml
+      # Create the env via conda
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: bdl_2022f_env
+          environment-file: bdl_2022f_env.yml
+          auto-update-conda: true
+          auto-activate-base: false
+          python-version: ${{ matrix.python-version }}
+          channels: pytorch
+      # Verify the install by printing out the packages  
+      - run: |
+          conda info
+          conda list
+          conda config --show-sources
+          conda config --show
+          python3 -c "import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))"
