@@ -18,8 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # "macos-latest", "windows-latest"
-        os: ["windows-latest"]
+        os: ["windows-latest", "macos-latest", "windows-latest"]
         python-version: ["3.8"]
     defaults:
       run:
@@ -45,4 +44,4 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
-          python3 -c \"import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))\"
+          python3 -c "import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))"
