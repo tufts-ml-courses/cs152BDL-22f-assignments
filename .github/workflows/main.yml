@@ -45,3 +45,4 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
+          python3 -c \"import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))\"
