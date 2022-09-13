@@ -44,4 +44,8 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
+          which python3
+          python3 --version
+          python3 -c "import numpy; print(numpy.__version__)"
+          python3 -c "import scipy; print(scipy.__version__)"
           python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item()))"
