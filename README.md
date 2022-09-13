@@ -3,6 +3,13 @@
 
 Course website: <https://www.cs.tufts.edu/comp/152BDL/2022f/>
 
+Cross-platform compatibility tests:   
+[![MacOS status](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_macos.yml/badge.svg)](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_macos.yml)
+• [![Ubuntu status](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_ubuntu.yml/badge.svg)](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_ubuntu.yml)
+• [![Windows status](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_windows.yml/badge.svg)](https://github.com/tufts-ml-courses/cs152BDL-22f-assignments/actions/workflows/verify_windows.yml)
+
+
+### Installation 
 
 Three steps to install the BDL Python environment anywhere
 
