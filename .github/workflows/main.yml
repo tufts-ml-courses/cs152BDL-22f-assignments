@@ -45,7 +45,7 @@ jobs:
           conda config --show-sources
           conda config --show
           python3 -c "import jax; import jax.numpy as jnp; f = lambda x: jnp.square(x); g = jax.grad(f); print('Jax says grad of x^2 at 2 is: ' + str(g(2.0)))"
-          python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item())"
+          python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item()))"
 
   verify-conda-windows:
     name: verify-${{ matrix.os }}-Py${{ matrix.python-version }}
@@ -79,4 +79,4 @@ jobs:
           conda list
           conda config --show-sources
           conda config --show
-          python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item())"
+          python3 -c "import torch; x = torch.tensor([3.0], requires_grad=True); y = torch.square(x); grad = torch.autograd.grad(y, x, create_graph=True); print('PyTorch says grad of x^2 at x=2 is: ' + str(grad[0].item()))"
